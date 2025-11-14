@@ -29,7 +29,7 @@ const TypingText = ({
   as: Component = 'div',
   typingSpeed = 50,
   initialDelay = 0,
-  pauseDuration = 2000,
+  pauseDuration = 5000,
   deletingSpeed = 30,
   loop = true,
   className = '',
@@ -185,7 +185,7 @@ const TypingText = ({
         ref={cursorRef}
         className={`inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${
           cursorCharacter === '|' 
-            ? `h-5 w-[1px] translate-y-1 bg-foreground ${cursorClassName}` 
+            ? `h-10 w-[2px] ml-3 bg-foreground ${cursorClassName}` 
             : `ml-1 ${cursorClassName}`
         }`}
       >
