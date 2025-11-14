@@ -1,0 +1,101 @@
+{
+  "hero": {
+    "title": ["Kallo.", "Web developer.", "Fullstack engineer.", "Problem solver.","Freelancer.","AI enthusiast."],
+    "subtitle": "I design and develop high-performance, scalable web products with attention to every interface detail. I believe in the power of teamwork, data, and persistence to solve business problems.",
+    "tagline": "Web Engineer",
+    "interests": [
+      "B2B SaaS project collaboration opportunities",
+      "Experimenting with AI in product experiences",
+      "Sharing frontend knowledge with the community"
+    ],
+    "stats": {
+      "projects": "10+",
+      "experienceYears": "5"
+    },
+    "cta": {
+      "label": "Get in touch",
+      "href": "mailto:catre11032005@gmail.com"
+    }
+  },
+  "about": {
+    "heading": "What do I do?",
+    "paragraphs": [
+      "I build products from idea to production, working closely with product owners, designers, and backend teams. I prioritize reusability, design clean component systems, and optimize the software development lifecycle.",
+      "My approach combines product thinking and technical excellence: always asking 'why' before 'how', while pursuing a clear, maintainable, and easy-to-handover codebase."
+    ],
+    "focusAreas": [
+      {
+        "title": "Modern Frontend",
+        "description": "Using Next.js, React Server Components, optimizing Core Web Vitals, and ensuring multi-device accessibility."
+      },
+      {
+        "title": "Sustainable Architecture",
+        "description": "Designing APIs, managing state, clear domain separation, and automated testing so teams can develop fast yet safely."
+      }
+    ]
+  },
+  "skills": [
+    { "name": "React", "level": "Expert" },
+    { "name": "JavaScript", "level": "Expert" },
+    { "name": "HTML", "level": "Expert" },
+    { "name": "CSS", "level": "Proficient" },
+    { "name": "Tailwind", "level": "Proficient" },
+    { "name": "Python", "level": "Strong" },
+    { "name": "Git", "level": "Proficient" },
+    { "name": "PostgreSQL", "level": "Strong" },
+    { "name": "Docker", "level": "Knowledgeable" },
+    { "name": "Data", "level": "Proficient" }
+  ],
+  "projects": [
+    {
+      "title": "Sales Analytics Dashboard System",
+      "description": "Designed and implemented interactive dashboard for sales teams, with real-time data via WebSocket and customizable charts.",
+      "stack": ["Next.js", "TypeScript", "Tailwind", "Socket.IO"],
+      "link": "https://example.com/dashboard"
+    },
+    {
+      "title": "Multi-User Blog Platform",
+      "description": "Built from scratch a blog system with Markdown support, permission management, SEO optimization, and CI/CD pipeline.",
+      "stack": ["Next.js", "Prisma", "PostgreSQL", "GitHub Actions"],
+      "link": "https://example.com/blog"
+    },
+    {
+      "title": "SaaS Product Landing Page",
+      "description": "Developed a performance-focused landing page (Lighthouse 96+), with A/B testing and conversion optimization.",
+      "stack": ["React", "Tailwind", "Cloudflare Pages"],
+      "link": "https://example.com/saas"
+    }
+  ],
+  "experiences": [
+    {
+      "company": "Alpha Technology Company",
+      "role": "Senior Frontend Engineer",
+      "time": "2023 - Present",
+      "achievements": [
+        "Led frontend architecture refactoring towards modularization, reducing build time by 35%.",
+        "Implemented internal design system, unifying experience across 4 web products."
+      ]
+    },
+    {
+      "company": "Beta Startup",
+      "role": "Fullstack Developer",
+      "time": "2021 - 2023",
+      "achievements": [
+        "Built MVP in 3 months with Next.js and NestJS, helping secure Seed funding round.",
+        "Automated CI/CD workflow, reducing release time by 60%."
+      ]
+    }
+  ],
+  "contacts": [
+    { "label": "Email", "value": "catre11032005@gmail.com", "href": "mailto:catre11032005@gmail.com" },
+    {
+      "label": "LinkedIn",
+      "value": "My LinkedIn",
+      "href": "https://www.linkedin.com/in/le-hoai-nam-385580364/"
+    },
+    { "label": "GitHub", "value": "kallo1103", "href": "https://github.com/kallo1103" },
+    { "label": "Schedule", "value": "Le Hoai Nam", "href": "https://cal.com/le-hoai-nam-fcr6rs" }
+  ],
+  "quote": "Ship fast, learn fast, always look towards the user."
+}
+
