@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import portfolioContent from "@/data/portfolio.json";
 import { HeaderSection, HeroSection } from "@/components/portfolio";
 import { PortfolioContent } from "@/types/portfolio";
-import { AuroraBackground } from "@/components/ui/shadcn-io/aurora-background";
+import { BalatroBackground } from "@/components/ui/shadcn-io/balatro-background";
 
 // Dynamic imports for non-critical sections with loading fallbacks
 const AboutSection = dynamic(
@@ -30,8 +30,8 @@ const content: PortfolioContent = portfolioContent;
 
 export default function Home() {
   return (
-    <AuroraBackground className="min-h-screen h-auto bg-black">
-      {/* SVG Filter Definition for liquid glass effect */}
+    <BalatroBackground className="min-h-screen h-auto bg-black">
+      {/* SVG Filter Definition for liquid glass effect - retained for components using it */}
       <svg style={{ display: 'none' }}>
         <filter
           id="glass-distortion"
@@ -41,7 +41,6 @@ export default function Home() {
           height="100%"
           filterUnits="objectBoundingBox"
         >
-          {/* Tạo nhiễu fractal để làm méo hình */}
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.01 0.01"
@@ -49,18 +48,12 @@ export default function Home() {
             seed="5"
             result="turbulence"
           />
-          
-          {/* Điều chỉnh độ tương phản và màu sắc */}
           <feComponentTransfer in="turbulence" result="mapped">
             <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
             <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
             <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
           </feComponentTransfer>
-          
-          {/* Làm mờ để tạo hiệu ứng mượt mà */}
           <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-          
-          {/* Thêm ánh sáng phản chiếu (specular lighting) */}
           <feSpecularLighting
             in="softMap"
             surfaceScale="5"
@@ -71,8 +64,6 @@ export default function Home() {
           >
             <fePointLight x="-200" y="-200" z="300" />
           </feSpecularLighting>
-          
-          {/* Kết hợp các hiệu ứng */}
           <feComposite
             in="specLight"
             operator="arithmetic"
@@ -82,8 +73,6 @@ export default function Home() {
             k4="0"
             result="litImage"
           />
-          
-          {/* Áp dụng displacement map để tạo hiệu ứng méo kính */}
           <feDisplacementMap
             in="SourceGraphic"
             in2="softMap"
@@ -117,6 +106,6 @@ export default function Home() {
           </Suspense>
         </main>
       </div>
-    </AuroraBackground>
+    </BalatroBackground>
   );
 }

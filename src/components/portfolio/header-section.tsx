@@ -36,16 +36,16 @@ export function HeaderSection() {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`sticky top-0 z-50 w-full transition-all duration-300`}
     >
       {/* Liquid Glass Navigation Bar */}
       <div className="mx-auto flex w-fit max-w-[1440px] justify-center py-2 sm:py-3 md:py-4">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="liquidGlass-wrapper rounded-full"
         >
@@ -79,7 +79,7 @@ export function HeaderSection() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-xs font-medium text-zinc-600 transition hover:text-zinc-950 md:text-sm"
+                  className="text-xs font-medium text-zinc-600 transition hover:text-zinc-950 md:text-xl"
                 >
                   {item.label}
                 </a>
@@ -124,43 +124,55 @@ export function HeaderSection() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden md:hidden"
+            className="overflow-hidden px-6 md:hidden"
           >
             <motion.div
-              initial={{ y: -20 }}
-              animate={{ y: 0 }}
-              exit={{ y: -20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mx-auto flex w-full max-w-[1440px] flex-col gap-3 border-t border-zinc-200 bg-white px-4 py-4 sm:gap-4 sm:px-6 sm:py-6"
+              className="liquidGlass-wrapper mx-auto flex w-full rounded-lg flex-col gap-3 border-t border-white/20 px-4 py-4 sm:gap-4 sm:px-6 sm:py-6"
             >
-              {navItems.map((item, index) => (
+              {/* Layer 1: Distortion effect (blur + SVG filter) */}
+              <div className="liquidGlass-effect"></div>
+              
+              {/* Layer 2: Tint màu trắng bán trong suốt */}
+              <div className="liquidGlass-tint"></div>
+              
+              {/* Layer 3: Shine effect (ánh sáng phản chiếu) */}
+              <div className="liquidGlass-shine"></div>
+              
+              {/* Layer 4: Nội dung menu */}
+              <div className="liquidGlass-text relative z-10 flex flex-col gap-3 sm:gap-4">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="text-sm font-medium text-zinc-600 transition hover:text-zinc-950 sm:text-base"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
                 <motion.a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="text-sm font-medium text-zinc-600 transition hover:text-zinc-950 sm:text-base"
+                  href="/assets/myCV.pdf"
+                  download="Kallo_CV.pdf"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: navItems.length * 0.05 }}
+                  className="mt-1 flex items-center justify-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-center text-xs font-semibold text-white transition hover:bg-zinc-700 sm:mt-2 sm:px-5 sm:py-2.5 sm:text-sm"
                 >
-                  {item.label}
+                  <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  Download CV
                 </motion.a>
-              ))}
-              <motion.a
-                href="/assets/myCV.pdf"
-                download="Kallo_CV.pdf"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: navItems.length * 0.05 }}
-                className="mt-1 flex items-center justify-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-center text-xs font-semibold text-white transition hover:bg-zinc-700 sm:mt-2 sm:px-5 sm:py-2.5 sm:text-sm"
-              >
-                <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                Download CV
-              </motion.a>
+              </div>
             </motion.div>
           </motion.div>
         )}

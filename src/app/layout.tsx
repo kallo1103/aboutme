@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio Kỹ Sư Web",
+  title: "Kallo",
   description:
-    "Hồ sơ trực tuyến giới thiệu kỹ năng, dự án và kinh nghiệm phát triển web.",
+    "Kallo portfolio",
   keywords: [
     "portfolio",
     "developer",
