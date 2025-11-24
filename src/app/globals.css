@@ -155,6 +155,11 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on your header height */
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -13,9 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kallo",
+  title: {
+    default: "Kallo | Creative Web Developer",
+    template: "%s | Kallo",
+  },
   description:
-    "Kallo portfolio",
+    "Portfolio of Kallo, a Fullstack Web Developer passionate about building high-performance, scalable, and beautiful web experiences.",
   keywords: [
     "portfolio",
     "developer",
@@ -24,10 +27,29 @@ export const metadata: Metadata = {
     "fullstack",
     "typescript",
     "nextjs",
+    "react",
+    "software engineer",
   ],
-  authors: [{ name: "Kỹ Sư Web" }],
-  creator: "Kỹ Sư Web",
-  metadataBase: new URL("https://example.com"),
+  authors: [{ name: "Le Hoai Nam", url: "https://github.com/kallo1103" }],
+  creator: "Le Hoai Nam",
+  metadataBase: new URL("https://kallo-portfolio.vercel.app"), // TODO: Update with your actual domain
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://kallo-portfolio.vercel.app",
+    title: "Kallo | Creative Web Developer",
+    description: "Portfolio of Kallo, a Fullstack Web Developer passionate about building high-performance, scalable, and beautiful web experiences.",
+    siteName: "Kallo Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kallo | Creative Web Developer",
+    description: "Portfolio of Kallo, a Fullstack Web Developer passionate about building high-performance, scalable, and beautiful web experiences.",
+    creator: "@kallo", // Update if you have a Twitter handle
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
+import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
 interface BalatroBackgroundProps {
   className?: string;
@@ -108,7 +108,7 @@ export const BalatroBackground: React.FC<BalatroBackgroundProps> = ({ className,
       fragment,
       uniforms: {
         uTime: { value: 0 },
-        uResolution: { value: new Color(window.innerWidth, window.innerHeight, 0) }, // Using Color as vec3 container or just array
+        uResolution: { value: [window.innerWidth, window.innerHeight] },
       },
     });
 
@@ -118,7 +118,13 @@ export const BalatroBackground: React.FC<BalatroBackgroundProps> = ({ className,
     
     const update = (t: number) => {
       animationId = requestAnimationFrame(update);
-      program.uniforms.uTime.value = t * 0.001;
+      
+      // Respect reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        program.uniforms.uTime.value = t * 0.001;
+      }
+      
       renderer.render({ scene: mesh });
     };
     

@@ -9,21 +9,9 @@ export function HeaderSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
  
 
-  // Xử lý click vào link navigation (smooth scroll với offset để không bị header che)
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      const headerHeight = 80; // Chiều cao header khoảng 80px
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setIsMenuOpen(false); // Đóng menu mobile sau khi click
-    }
+  // Xử lý click vào link navigation (smooth scroll handled by CSS)
+  const handleNavClick = () => {
+    setIsMenuOpen(false); // Close mobile menu
   };
 
   // Danh sách các mục navigation
@@ -78,7 +66,7 @@ export function HeaderSection() {
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  onClick={() => handleNavClick()}
                   className="text-xs font-medium text-zinc-600 transition hover:text-zinc-950 md:text-xl"
                 >
                   {item.label}
@@ -152,7 +140,7 @@ export function HeaderSection() {
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
+                    onClick={() => handleNavClick()}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
