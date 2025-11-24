@@ -22,6 +22,7 @@ interface TypingTextProps {
   onSentenceComplete?: (sentence: string, index: number) => void;
   startOnVisible?: boolean;
   reverseMode?: boolean;
+  children?: React.ReactNode;
 }
 
 const TypingText = ({
@@ -51,7 +52,7 @@ const TypingText = ({
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(!startOnVisible);
   const cursorRef = useRef<HTMLSpanElement>(null);
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLElement | null>(null);
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
@@ -170,8 +171,11 @@ const TypingText = ({
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
+  // Type assertion to allow ref forwarding with dynamic component
+  const ComponentWithRef = Component as any;
+  
   return (
-    <Component
+    <ComponentWithRef
       ref={containerRef}
       className={`inline-block whitespace-pre-wrap tracking-tight ${className}`}
       {...props}
@@ -191,7 +195,7 @@ const TypingText = ({
           {cursorCharacter === '|' ? '' : cursorCharacter}
         </span>
       )}
-    </Component>
+    </ComponentWithRef>
   );
 };
 
