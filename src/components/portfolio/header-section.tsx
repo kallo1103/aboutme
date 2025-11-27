@@ -22,6 +22,9 @@ export function HeaderSection() {
     { label: "Contact", href: "#contact" },
   ];
 
+  // State to track the hovered nav item for the sliding effect
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
@@ -29,25 +32,16 @@ export function HeaderSection() {
       transition={{ duration: 0.5 }}
       className={`sticky top-0 z-50 w-full transition-all duration-300`}
     >
-      {/* Liquid Glass Navigation Bar */}
+      {/* Navigation Bar */}
       <div className="mx-auto flex w-fit max-w-[1440px] justify-center py-2 sm:py-3 md:py-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="liquidGlass-wrapper rounded-full"
+          className="rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm"
         >
-          {/* Layer 1: Distortion effect (blur + SVG filter) */}
-          <div className="liquidGlass-effect"></div>
-          
-          {/* Layer 2: Tint màu trắng bán trong suốt */}
-          <div className="liquidGlass-tint"></div>
-          
-          {/* Layer 3: Shine effect (ánh sáng phản chiếu) */}
-          <div className="liquidGlass-shine"></div>
-          
-          {/* Layer 4: Nội dung navigation */}
-          <nav className="liquidGlass-text flex items-center gap-4 justify-between px-4 py-2 sm:gap-6 sm:px-6 sm:py-3 md:gap-8 md:px-8 md:py-4 lg:gap-10 lg:px-16">
+          {/* Nội dung navigation */}
+          <nav className="flex items-center gap-4 justify-between px-4 py-2 sm:gap-6 sm:px-6 sm:py-3 md:gap-8 md:px-8 md:py-4 lg:gap-10 lg:px-16">
             <a
               href="#"
               onClick={(e) => {
@@ -61,21 +55,43 @@ export function HeaderSection() {
             </a>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-4 md:flex md:gap-6 lg:gap-8">
+            <div className="hidden items-center gap-2 md:flex md:gap-4 lg:gap-6" onMouseLeave={() => setHoveredPath(null)}>
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => handleNavClick()}
-                  className="text-xs font-medium text-zinc-600 transition hover:text-zinc-950 md:text-xl"
+                  onMouseEnter={() => setHoveredPath(item.href)}
+                  className="relative px-4 py-2 rounded-full transition-colors duration-300"
                 >
-                  {item.label}
+                  {/* Liquid Glass Hover Effect - Sliding Background */}
+                  {hoveredPath === item.href && (
+                    <motion.div
+                      layoutId="liquid-glass-bg"
+                      className="absolute inset-0 rounded-full overflow-hidden"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
+                    >
+                      <div className="liquidGlass-effect"></div>
+                      <div className="liquidGlass-tint"></div>
+                      <div className="liquidGlass-shine"></div>
+                    </motion.div>
+                  )}
+                  
+                  <span className={`relative z-10 text-xs font-medium transition-colors duration-300 md:text-xl ${
+                    hoveredPath === item.href ? "text-zinc-950" : "text-zinc-600"
+                  }`}>
+                    {item.label}
+                  </span>
                 </a>
               ))}
               <a
                 href="/assets/myCV.pdf"
                 download="Kallo_CV.pdf"
-                className="flex items-center gap-1.5 rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-zinc-700 md:gap-2 md:px-4 md:py-2 md:text-sm lg:px-5"
+                className="ml-2 flex items-center gap-1.5 rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-zinc-700 md:gap-2 md:px-4 md:py-2 md:text-sm lg:px-5"
               >
                 <Download className="h-3 w-3 md:h-4 md:w-4" />
                 Download CV
