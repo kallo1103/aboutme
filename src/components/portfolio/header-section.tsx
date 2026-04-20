@@ -48,8 +48,7 @@ export function HeaderSection() {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="text-2xl font-bold text-zinc-950 transition hover:text-zinc-700 sm:text-3xl md:text-4xl"
-              style={{ fontFamily: "'Mea Culpa', cursive" }}
+              className="text-2xl font-bold font-logo text-zinc-950 transition hover:text-zinc-700 sm:text-3xl md:text-4xl"
             >
               Kallo
             </a>

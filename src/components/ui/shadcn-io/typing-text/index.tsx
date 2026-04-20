@@ -172,6 +172,7 @@ const TypingText = ({
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
   // Type assertion to allow ref forwarding with dynamic component
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ComponentWithRef = Component as any;
   
   return (
